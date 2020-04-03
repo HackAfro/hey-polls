@@ -1,6 +1,8 @@
+const BASE_URL = 'https://polls.apiblueprint.org';
+
 export const fetchQuestions = () => {
   return new Promise(async (resolve, reject) => {
-    const res = await fetch('/questions');
+    const res = await fetch(`${BASE_URL}/questions`);
     if (res.ok && res.status === 200) {
       const questions = await res.json();
       resolve(questions);
@@ -12,7 +14,7 @@ export const fetchQuestions = () => {
 
 export const fetchQuestion = url => {
   return new Promise(async (resolve, reject) => {
-    const res = await fetch(url);
+    const res = await fetch(`${BASE_URL}${url}`);
     if (res.ok && res.status === 200) {
       const question = await res.json();
       resolve(question);
@@ -24,7 +26,7 @@ export const fetchQuestion = url => {
 
 export const placeVote = url => {
   return new Promise(async (resolve, reject) => {
-    const res = await fetch(url, {
+    const res = await fetch(`${BASE_URL}${url}`, {
       method: 'POST'
     });
 
