@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route } from 'react-router-dom';
+
+import Header from './components/header';
+import QuestionList from './components/question-list';
+import AppProvider from './providers';
+import QuestionDetail from './components/questionDetail';
+
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppProvider>
+      <div className='mx-auto w-full py-4 px-4 md:w-4/5 md:py-8 md:px-6'>
+        <Header />
+        <div className='max-w-full overflow-x-auto mt-8 md:mt-10'>
+          <QuestionList />
+        </div>
+
+        <div>
+          <Route path='/questions/:questionId'>
+            <QuestionDetail />
+          </Route>
+        </div>
+      </div>
+    </AppProvider>
   );
 }
 
